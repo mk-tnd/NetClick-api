@@ -16,7 +16,30 @@ module.exports = (sequelize, DataTypes) => {
       status: { type: DataTypes.ENUM({ values: ["active", "nonactive"] }) },
     },
 
-    { tableName: "users", underscored: true }
+    {
+      tableName: "users",
+      underscored: true
+    }
   );
+  User.associate = models => {
+    User.hasMany(models.UserPackage,
+      {
+        foreignKey: {
+          name: 'userId',
+          allowNull: false
+        },
+        onDlelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+      })
+    User.hasMany(models.Profile,
+      {
+        foreignKey: {
+          name: 'userId',
+          allowNull: false
+        },
+        onDlelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+      })
+  }
   return User;
 };

@@ -8,16 +8,29 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       videoQuality: {
-        type: DataTypes.ENUM({values: ["welcome","silver","gold","platinum"]}),
+        type: DataTypes.ENUM({ values: ["welcome", "silver", "gold", "platinum"] }),
         allowNull: false
       },
       resolutions: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM({ values: ["480p", "720p", "1080p", "1440p"] }),
         allowNull: false,
         unique: true
+      },
+      price: {
+        type: DataTypes.DECIMAL(5, 2),
+        allowNull: false,
+      },
+      packageTime: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       }
 
-      
+
+    },
+    {
+      tableName: 'packages',
+      underscored: true,
+      timestamps: false
     }
   );
   return Package;

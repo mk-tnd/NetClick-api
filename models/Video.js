@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'videos', underscored: true
     })
   Video.associate = models => {
-    Video.belongsTo(models.Playlist,
+    Video.hasMany(models.Playlist,
       {
         foreignKey: {
-          name: 'playlistId',
+          name: 'videoId',
           allowNull: false
         },
         onDlelete: 'RESTRICT',

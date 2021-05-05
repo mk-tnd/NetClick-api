@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         onDlelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
-    Playlist.hasMany(models.Video,
+    Playlist.belongsTo(models.Video,
       {
         foreignKey: {
-          name: 'playlistId',
+          name: 'videoId',
           allowNull: false
         },
         onDlelete: 'RESTRICT',

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'profileId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     Playlist.belongsTo(models.Video,
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'videoId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     User.hasMany(models.Profile,
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

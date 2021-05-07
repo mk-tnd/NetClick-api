@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false,
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     Profile.hasMany(models.Playlist,
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'profileId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

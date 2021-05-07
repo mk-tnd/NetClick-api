@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'videoId',
           allowNull: false
         },
-        onDelete: 'RESTRICT',
+        onDlelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     Video.belongsTo(models.Category,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'categoryId',
           allowNull: false
         },
-        onDelete: 'RESTRICT',
+        onDlelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

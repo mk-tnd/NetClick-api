@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false,
         },
-        onDelete: 'RESTRICT',
+        onDlelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     UserPackage.belongsTo(models.Package,
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'packageId',
           allowNull: false
         },
-        onDelete: 'RESTRICT',
+        onDlelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

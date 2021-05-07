@@ -27,6 +27,6 @@ app.use("/", (req, res) => {
   return res.status(404).json({ message: "Path not found" });
 });
 app.use(error)
-// sequelize.sync({ force: true }).then(console.log('Database Sync'))
+sequelize.sync({ force: true }).then(console.log('Database Sync'))
 const port = PORT || 3000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));

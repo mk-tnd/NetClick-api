@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'profileId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

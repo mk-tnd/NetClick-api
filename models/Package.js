@@ -33,5 +33,16 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
     }
   );
+  Package.asscoiate = models => {
+    Package.hasMany(models.UserPackage,
+      {
+        foreignKey: {
+          name: 'packageId',
+          allowNull: false
+        },
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+      })
+  }
   return Package;
 }

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'videoId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

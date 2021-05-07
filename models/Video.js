@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'categoryId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
   }

@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
     }
   );
-  Package.asscoiate = models => {
+  Package.associate = models => {
     Package.hasMany(models.UserPackage,
       {
         foreignKey: {

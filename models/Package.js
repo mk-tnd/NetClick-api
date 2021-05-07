@@ -34,14 +34,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Package.associate = models => {
-    Package.hasMany(models.UserPackage, {
-      foreignKey: {
-        name: 'packageId',
-        allowNull: false
-      },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
-    })
+    Package.hasMany(models.UserPackage,
+      {
+        foreignKey: {
+          name: 'packageId',
+          allowNull: false,
+        },
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+      })
   }
   return Package;
 }

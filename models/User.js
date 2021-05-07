@@ -18,28 +18,26 @@ module.exports = (sequelize, DataTypes) => {
 
     {
       tableName: "users",
-      underscored: true
+      underscored: true,
     }
   );
-  User.associate = models => {
-    User.hasMany(models.UserPackage,
-      {
-        foreignKey: {
-          name: 'userId',
-          allowNull: false
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
-      })
-    User.hasMany(models.Profile,
-      {
-        foreignKey: {
-          name: 'userId',
-          allowNull: false
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
-      })
-  }
+  User.associate = (models) => {
+    User.hasMany(models.UserPackage, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+      onUpdate: "RESTRICT",
+    });
+    User.hasMany(models.Profile, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+      onUpdate: "RESTRICT",
+    });
+  };
   return User;
 };

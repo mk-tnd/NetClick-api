@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const Video = sequelize.define('Video',
     {
       name: { type: DataTypes.STRING, allowNull: false, unique: true },
-      description: DataTypes.STRING
+      description: DataTypes.STRING,
+      status: { type: DataTypes.ENUM({ values: ["Showing", "Deleted"] }), allowNull: false }
     },
     {
       tableName: 'videos', underscored: true
@@ -14,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'videoId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     Video.belongsTo(models.Category,

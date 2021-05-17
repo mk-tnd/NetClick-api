@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Playlist = sequelize.define('Playlist',
     {
-      playlistName: { type: DataTypes.STRING, allowNull: false }
+      playlistName: { type: DataTypes.STRING, allowNull: false },
+
     },
     {
       tableName: 'playlists',
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'profileId',
           allowNull: false
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     Playlist.belongsTo(models.Video,

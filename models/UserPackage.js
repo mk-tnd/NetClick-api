@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
           name: 'userId',
           allowNull: false,
         },
-        onDlelete: 'RESTRICT',
+        onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT'
       })
     UserPackage.belongsTo(models.Package,

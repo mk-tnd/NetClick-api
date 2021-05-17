@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM({ values: ["admin", "user"] }),
         allowNull: false,
       },
-      status: { type: DataTypes.ENUM({ values: ["active", "nonactive"] }) },
+      status: { type: DataTypes.ENUM({ values: ["active", "nonactive"] }), allowNull: false },
     },
 
     {

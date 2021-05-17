@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/userRoute', userRoute)
+app.use('/user', userRoute)
 app.use('/profile', profileRoute)
 app.use('/package', packageRoute)
 app.use('/video', videoRoute)

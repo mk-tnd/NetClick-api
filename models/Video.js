@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Video = sequelize.define('Video',
     {
       name: { type: DataTypes.STRING, allowNull: false, unique: true },
+      vname: { type: DataTypes.STRING, allowNull: false, unique: true },
       description: DataTypes.STRING,
       status: { type: DataTypes.ENUM({ values: ["Showing", "Deleted"] }), allowNull: false }
     },
@@ -30,3 +31,4 @@ module.exports = (sequelize, DataTypes) => {
   }
   return Video
 }
+

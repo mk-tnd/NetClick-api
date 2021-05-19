@@ -51,7 +51,7 @@ async function register(req, res, next) {
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: parseInt(EXPIRE) })
     await transaction.commit()
     res.status(200).json({ message: 'Sign Up successfully', token })
-    console.log(data)
+
   } catch (err) {
     await transaction.rollback()
     next(err)
@@ -79,7 +79,7 @@ async function login(req, res, next) {
     }
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: parseInt(EXPIRE) })
 
-    res.status(200).json({ message: 'Login successfully', token })
+    res.status(200).json({ message: 'Login successfully', token, id: data.id })
 
   } catch (err) {
     next(err)

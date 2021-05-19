@@ -76,7 +76,6 @@ async function editProfile(req, res, next) {
   if (path) {
     try {
 
-      console.log(beforeUpdate)
       if (!beforeUpdate) throw new ValidateError('Can not found this profile', 400)
 
       cloudinary.uploader.upload(path, async (err, result) => {
@@ -84,7 +83,7 @@ async function editProfile(req, res, next) {
 
         const dataUpdateProfile = {
           profileName: profileName || beforeUpdate.profileName,
-          profileType: profileType || beforeUpdate.profileType,
+          profileType: profileType == 'undefined' ? beforeUpdate.profileType : profileType,
           profilePicture: result.secure_url || beforeUpdate.profilePicture,
           profileStatus: profileStatus || beforeUpdate.profileStatus,
           profileStatus: profileStatus || beforeUpdate.profileStatus,

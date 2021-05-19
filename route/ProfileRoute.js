@@ -8,4 +8,5 @@ router.post('/newProfile', protect, upload.single('image'), ProfileControl.creat
 router.put('/editProfile/:profileId', protect, upload.single('image'), ProfileControl.editProfile)
 router.get('/', protect, ProfileControl.getAllProfile)
 
+
 module.exports = router

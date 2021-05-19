@@ -8,6 +8,7 @@ const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 }
 const JwtStrategy = new Strategy(options, async (payload, done) => {
+
   try {
     const user = await User.findOne({ where: { id: payload.id } })
 

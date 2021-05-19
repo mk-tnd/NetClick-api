@@ -2,6 +2,9 @@ const { sequelize, Profile } = require('../models')
 const ValidateError = require('../middleware/ValidateError')
 const cloudinary = require('cloudinary').v2
 const fs = require('fs')
+const jwt = require('jsonwebtoken')
+const { SECRET_KEY } = process.env
+
 
 async function createProfile(req, res, next) {
   const { id } = req.user
@@ -134,6 +137,7 @@ async function getAllProfile(req, res, next) {
 
   try {
     const { role, id } = req.user
+
     role === 'admin' ? search = { where: { userId: id } } : search = { where: { userId: id, profileStatus: "Actived" } }
 
     const data = await Profile.findAll(search)
@@ -146,9 +150,12 @@ async function getAllProfile(req, res, next) {
 
 }
 
+
+
 module.exports = {
   createProfile,
   editProfile,
-  getAllProfile
+  getAllProfile,
+
 }
 

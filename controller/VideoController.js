@@ -2,7 +2,6 @@ const { sequelize, Video, Category } = require("../models");
 const ValidateError = require('../middleware/ValidateError');
 const { search } = require("../route/PackageRoute");
 
-
 exports.createVideo = async (req, res, next) => {
 
   const { role } = req.user
@@ -10,8 +9,9 @@ exports.createVideo = async (req, res, next) => {
   const transaction = await sequelize.transaction()
 
   try {
-
-
+    const { thumbnailS, name, vname, description, categoryId } = req.body;
+    const video = await Video.create({
+      thumbnail: thumbnailS,
     if (role !== 'admin') throw new ValidateError('Unauthorized', 401)
     if (!name) throw new ValidateError('Video name is required', 400)
     if (name.trim() === "") throw new ValidateError('Video name can not be blank', 400)
@@ -26,7 +26,6 @@ exports.createVideo = async (req, res, next) => {
       status: "Showing",
       categoryId,
     });
-
     res.status(200).json({ video }, { transaction });
     await transaction.commit()
   } catch (err) {

@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Video = sequelize.define(
     "Video",
     {
+      thumbnail: { type: DataTypes.STRING, allowNull: false, unique: true },
       name: { type: DataTypes.STRING, allowNull: false, unique: true },
       vname: { type: DataTypes.STRING, allowNull: false, unique: true },
       description: DataTypes.STRING,

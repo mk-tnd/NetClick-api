@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       videoQuality: {
-        type: DataTypes.ENUM({ values: ["welcome", "silver", "gold", "platinum"] }),
+        type: DataTypes.ENUM({ values: ["bronze", "silver", "gold", "platinum"] }),
         allowNull: false
       },
       resolutions: {

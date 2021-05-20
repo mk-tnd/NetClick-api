@@ -1,8 +1,10 @@
-const express = require("express");
-const VideoController = require("../controller/VideoController");
+const express = require('express')
+const router = express.Router()
+const VideoControl = require('../controller/VideoController')
+const protect = require('../middleware/passport')
 
-const router = express.Router();
+router.post('/add', protect, VideoControl.createVideo)
+router.put('/edit/:id', protect, VideoControl.editVideo)
+router.get('/', protect, VideoControl.getAllVideo)
 
-router.post("/", VideoController.createVideo);
-
-module.exports = router;
+module.exports = router

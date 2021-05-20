@@ -8,13 +8,15 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       videoQuality: {
-        type: DataTypes.ENUM({ values: ["bronze", "silver", "gold", "platinum"] }),
-        allowNull: false
+        type: DataTypes.ENUM,
+        values: ["bronze", "silver", "gold", "platinum"],
+        allowNull: false,
       },
       resolutions: {
-        type: DataTypes.ENUM({ values: ["480p", "720p", "1080p", "1440p"] }),
+        type: DataTypes.ENUM,
+        values: ["480p", "720p", "1080p", "1440p"],
         allowNull: false,
-        unique: true
+        unique: true,
       },
       price: {
         type: DataTypes.DECIMAL(5, 2),
@@ -22,27 +24,24 @@ module.exports = (sequelize, DataTypes) => {
       },
       packageTime: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
-
-
+        allowNull: false,
+      },
     },
     {
-      tableName: 'packages',
+      tableName: "packages",
       underscored: true,
-      timestamps: false
+      timestamps: false,
     }
   );
-  Package.associate = models => {
-    Package.hasMany(models.UserPackage,
-      {
-        foreignKey: {
-          name: 'packageId',
-          allowNull: false
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
-      })
-  }
+  Package.associate = (models) => {
+    Package.hasMany(models.UserPackage, {
+      foreignKey: {
+        name: "packageId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+      onUpdate: "RESTRICT",
+    });
+  };
   return Package;
-}
+};

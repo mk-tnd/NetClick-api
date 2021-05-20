@@ -55,7 +55,7 @@ async function editPackage(req, res, next) {
 }
 async function getPackage(req, res, next) {
   const { role, id } = req.user
-  const { sort, item, desc } = req.query
+  const { sort, item, desc } = req.query // path จะเป็น axios.get('/package?sort=อะไรก็ได้ขอแค่มีค่า,item=ระบุสิ่งที่ต้องการจะเรียง และ desc ใส่แค่ให้เรียงจากมากไปน้อยครับ')
 
   const searchCondition = { include: [{ model: Package, attributes: ['name', 'videoQuality', 'resolutions', 'packageTime'] }] }
 

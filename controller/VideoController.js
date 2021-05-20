@@ -24,7 +24,6 @@ exports.createVideo = async (req, res, next) => {
       status: "Showing",
       categoryId,
     });
-
     res.status(200).json({ video }, { transaction });
     await transaction.commit();
   } catch (err) {

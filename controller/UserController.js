@@ -94,7 +94,7 @@ async function login(req, res, next) {
 
 async function me(req, res, next) {
   const { id, email, role, status } = req.user;
-  const profile = await Profile.findAll({ where: { userId: id } })
+  const profile = await Profile.findAll({ where: { userId: id } });
 
   res.status(200).json({
     data: {

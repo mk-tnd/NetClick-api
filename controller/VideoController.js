@@ -4,7 +4,7 @@ const { search } = require("../route/PackageRoute");
 
 exports.createVideo = async (req, res, next) => {
   const { role } = req.user;
-  const { name, vname, description, categoryId } = req.body;
+  const { thumbnail, name, vname, description, categoryId } = req.body;
   const transaction = await sequelize.transaction();
 
   try {
@@ -18,14 +18,15 @@ exports.createVideo = async (req, res, next) => {
     if (!categoryId) throw new ValidateError("Category is required", 400);
 
     const video = await Video.create({
+      thumbnail,
       name,
       vname,
       description,
       status: "Showing",
       categoryId,
     });
-    res.status(200).json({ video }, { transaction });
     await transaction.commit();
+    res.status(200).json({ video }, { transaction });
   } catch (err) {
     await transaction.rollback();
     next(err);

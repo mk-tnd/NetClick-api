@@ -1,4 +1,4 @@
-const { sequelize, User, UserPackage } = require("../models");
+const { sequelize, User, UserPackage, Profile } = require("../models");
 const ValidateError = require("../middleware/ValidateError");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -94,12 +94,15 @@ async function login(req, res, next) {
 
 async function me(req, res, next) {
   const { id, email, role, status } = req.user;
+  const profile = await Profile.findAll({ where: { userId: id } });
+
   res.status(200).json({
     data: {
       id,
       email,
       role,
       status,
+      profile,
     },
   });
 }

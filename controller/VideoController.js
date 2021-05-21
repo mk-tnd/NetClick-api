@@ -6,7 +6,6 @@ exports.createVideo = async (req, res, next) => {
   const { role } = req.user;
   const { thumbnail, name, vname, description, categoryId } = req.body;
   const transaction = await sequelize.transaction();
-
   try {
     if (role !== "admin") throw new ValidateError("Unauthorized", 401);
     if (!name) throw new ValidateError("Video name is required", 400);
@@ -24,6 +23,7 @@ exports.createVideo = async (req, res, next) => {
       description,
       status: "Showing",
       categoryId,
+      thumbnail,
     });
     await transaction.commit();
     res.status(200).json({ video }, { transaction });

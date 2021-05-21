@@ -87,4 +87,15 @@ exports.getAllVideo = async (req, res, next) => {
   }
 };
 
-exports.getSingleVideo = async (req, res, next) => { };
+exports.getSingleVideo = async (req, res, next) => {
+  const { role } = req.user
+  const { id } = req.params
+  let search;
+  role === 'admin' ? search = { where: { id }, include: [{ model: Category, attributes: ['name'] }] } : search = { where: { id, status: 'Showing' }, include: [{ model: Category, attributes: ['name'] }] }
+  try {
+    const data = await Video.findOne(search)
+    res.status(200).json({ data })
+  } catch (err) {
+    next(err)
+  }
+};

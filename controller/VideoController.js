@@ -15,7 +15,6 @@ exports.createVideo = async (req, res, next) => {
     if (vname.trim() === "")
       throw new ValidateError("Video file or link is required", 400);
     if (!categoryId) throw new ValidateError("Category is required", 400);
-
     const video = await Video.create({
       thumbnail,
       name,
@@ -61,20 +60,20 @@ exports.editVideo = async (req, res, next) => {
 
 exports.getAllVideo = async (req, res, next) => {
   const { role } = req.user;
-  const { category } = req.query; //ใช้ id ของ category ในการระบุว่าเป็นหนังประเภทไหน
+  const { category } = req.query;
   let search;
   role === "admin"
     ? (search = { include: [{ model: Category, attributes: ["name"] }] })
     : (search = {
-      where: { status: "Showing" },
-      include: [{ model: Category, attributes: ["name"] }],
-    });
+        where: { status: "Showing" },
+        include: [{ model: Category, attributes: ["name"] }],
+      });
   let condition = {};
   !category
     ? (condition = { ...search })
     : role === "admin"
-      ? (condition = { ...search, where: { categoryId: category } })
-      : (condition = {
+    ? (condition = { ...search, where: { categoryId: category } })
+    : (condition = {
         where: { status: "Showing", categoryId: category },
         include: [{ model: Category, attributes: ["name"] }],
       });
@@ -87,14 +86,22 @@ exports.getAllVideo = async (req, res, next) => {
 };
 
 exports.getSingleVideo = async (req, res, next) => {
-  const { role } = req.user
-  const { id } = req.params
+  const { role } = req.user;
+  const { id } = req.params;
   let search;
-  role === 'admin' ? search = { where: { id }, include: [{ model: Category, attributes: ['name'] }] } : search = { where: { id, status: 'Showing' }, include: [{ model: Category, attributes: ['name'] }] }
+  role === "admin"
+    ? (search = {
+        where: { id },
+        include: [{ model: Category, attributes: ["name"] }],
+      })
+    : (search = {
+        where: { id, status: "Showing" },
+        include: [{ model: Category, attributes: ["name"] }],
+      });
   try {
-    const data = await Video.findOne(search)
-    res.status(200).json({ data })
+    const data = await Video.findOne(search);
+    res.status(200).json({ data });
   } catch (err) {
-    next(err)
+    next(err);
   }
 };

@@ -23,9 +23,10 @@ exports.createVideo = async (req, res, next) => {
       status: "Showing",
       categoryId,
       thumbnail,
-    });
+    },
+      { transaction });
     await transaction.commit();
-    res.status(200).json({ video }, { transaction });
+    res.status(200).json({ video });
   } catch (err) {
     await transaction.rollback();
     next(err);

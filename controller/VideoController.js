@@ -15,16 +15,18 @@ exports.createVideo = async (req, res, next) => {
     if (vname.trim() === "")
       throw new ValidateError("Video file or link is required", 400);
     if (!categoryId) throw new ValidateError("Category is required", 400);
-    const video = await Video.create({
-      thumbnail,
-      name,
-      vname,
-      description,
-      status: "Showing",
-      categoryId,
-      thumbnail,
-    },
-      { transaction });
+    const video = await Video.create(
+      {
+        thumbnail,
+        name,
+        vname,
+        description,
+        status: "Showing",
+        categoryId,
+        thumbnail,
+      },
+      { transaction }
+    );
     await transaction.commit();
     res.status(200).json({ video });
   } catch (err) {

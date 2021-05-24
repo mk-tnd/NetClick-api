@@ -23,7 +23,6 @@ exports.createVideo = async (req, res, next) => {
       description,
       status: "Showing",
       categoryId,
-      thumbnail,
     },
       { transaction });
     await transaction.commit();

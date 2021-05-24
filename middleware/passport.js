@@ -19,6 +19,7 @@ const JwtStrategy = new Strategy(options, async (payload, done) => {
   }
 });
 
+
 passport.use("jwt-user", JwtStrategy);
 
 const protect = passport.authenticate("jwt-user", { session: false });

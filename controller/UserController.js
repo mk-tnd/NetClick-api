@@ -94,8 +94,16 @@ async function login(req, res, next) {
 
 async function me(req, res, next) {
   const { id, email, role, status } = req.user;
-  const profile = await Profile.findAll({ where: { userId: id } });
-  const package = await UserPackage.findOne({ where: { userId: id }, include: { model: Package, attributes: ['name', 'videoQuality', 'resolutions', 'price',] }, attributes: ['packageId'] })
+  const { profileId } = req.params;
+  const profile = await Profile.findOne({ where: { id: profileId } });
+  const package = await UserPackage.findOne({
+    where: { userId: id },
+    include: {
+      model: Package,
+      attributes: ["name", "videoQuality", "resolutions", "price"],
+    },
+    attributes: ["packageId"],
+  });
   res.status(200).json({
     data: {
       id,
@@ -103,7 +111,7 @@ async function me(req, res, next) {
       role,
       status,
       profile,
-      package
+      package,
     },
   });
 }

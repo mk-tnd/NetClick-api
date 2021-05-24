@@ -1,4 +1,4 @@
-const { sequelize, User, UserPackage, Profile } = require("../models");
+const { sequelize, User, UserPackage, Profile, Package } = require("../models");
 const ValidateError = require("../middleware/ValidateError");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -95,7 +95,7 @@ async function login(req, res, next) {
 async function me(req, res, next) {
   const { id, email, role, status } = req.user;
   const profile = await Profile.findAll({ where: { userId: id } });
-
+  const package = await UserPackage.findOne({ where: { userId: id }, include: { model: Package, attributes: ['name', 'videoQuality', 'resolutions', 'price',] }, attributes: ['packageId'] })
   res.status(200).json({
     data: {
       id,
@@ -103,6 +103,7 @@ async function me(req, res, next) {
       role,
       status,
       profile,
+      package
     },
   });
 }
